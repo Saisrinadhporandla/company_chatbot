@@ -1,0 +1,15 @@
+import streamlit as st
+from langchain_groq import ChatGroq
+
+class loadGroq:
+    def __init__(self,user_controls_inputs):
+        self.user_controls_inputs=user_controls_inputs
+
+    def get_llm_model(self):
+        groqKey=self.user_controls_inputs["groq_api_key"]
+        selected_groq_model=self.user_controls_inputs["selected_groq_model"]
+        if groqKey is " ":
+            st.error("please enter api key")
+        llm=ChatGroq(model=selected_groq_model,api_key=groqKey)
+
+        return llm
